@@ -11,5 +11,13 @@ class State extends Model
         'name',
         'slug'
     ];
+
+    public function adverts(){
+        return $this->hasMany(Advert::class);
+    }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
     use HasFactory;
 }

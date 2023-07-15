@@ -11,5 +11,10 @@ class Category extends Model
         'name',
         'slug'
     ];
+
+    public function adverts(){
+        return $this->hasMany(Advert::class);
+    }
+
     use HasFactory;
 }

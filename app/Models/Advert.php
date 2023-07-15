@@ -16,5 +16,17 @@ class Advert extends Model
         'category_id',
         'state_id'
     ];
+
+    public function categories(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function states(){
+        return $this->belongsTo(State::class);
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
 }

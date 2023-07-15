@@ -20,9 +20,12 @@ return new class extends Migration
             $table->float('price');
             $table->boolean('isNegociable')->default(false);
             $table->text('description')->nullable();
-            $table->foreignId(User::class);
-            $table->foreignId(Category::class);
-            $table->foreignId(State::class);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('state_id')->references('id')->on('states');
             $table->timestamps();
         });
     }
@@ -33,10 +36,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('adverts', function(Blueprint $table){
-            $table->dropForeignIdFor(User::class);
-            $table->dropForeignIdFor(Category::class);
-            $table->dropForeignIdFor(State::class);
-            $table->dropIfExists('adverts');
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['category_id']);
+            $table->dropForeign(['state_id']);
+
         });
+
+        Schema::dropIfExists('adverts');
     }
 };
