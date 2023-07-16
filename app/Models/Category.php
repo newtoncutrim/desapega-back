@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $filable = [
+
+    use HasFactory;
+
+    public $timestamps = false;
+
+    protected $fillable = [
         'name',
         'slug'
     ];
@@ -15,6 +20,4 @@ class Category extends Model
     public function adverts(){
         return $this->hasMany(Advert::class);
     }
-
-    use HasFactory;
 }

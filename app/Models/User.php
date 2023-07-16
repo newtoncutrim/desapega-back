@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'state_id'
+        'state_id',
+
     ];
 
     /**
@@ -51,4 +52,5 @@ class User extends Authenticatable
     public function adverts(){
         return $this->hasMany(Advert::class);
     }
+
 }

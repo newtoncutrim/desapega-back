@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    protected $filable = [
+    use HasFactory;
+
+    public $timestamps = false;
+
+    protected $fillable = [
         'name',
         'slug'
     ];
@@ -19,5 +23,5 @@ class State extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
-    use HasFactory;
+
 }

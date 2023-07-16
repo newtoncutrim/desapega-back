@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advert extends Model
 {
-    protected $filable = [
+    use HasFactory;
+    protected $fillable = [
         'title',
         'price',
         'isNegociable',
@@ -17,16 +18,16 @@ class Advert extends Model
         'state_id'
     ];
 
-    public function categories(){
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 
-    public function states(){
+    public function state(){
         return $this->belongsTo(State::class);
     }
 
-    public function users(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
-    use HasFactory;
+
 }
