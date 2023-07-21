@@ -17,5 +17,5 @@ Route::get('/users', [UserController::class, 'index']);
 
 Route::post('/user/signup', [UserController::class, 'signup']);
 Route::post('/user/signin', [UserController::class, 'signin']);
-Route::post('/user/data', [UserController::class, 'data'])->withoutMiddleware(VerifyCsrfToken::class);
+Route::get('/user/data', [UserController::class, 'data'])->withoutMiddleware(VerifyCsrfToken::class);
 /* metodo de exemplo crf token */

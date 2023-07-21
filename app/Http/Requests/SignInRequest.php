@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class CreateUserRequest extends FormRequest
+class SignInRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,8 +14,8 @@ class CreateUserRequest extends FormRequest
     /* public function authorize(): bool
     {
         return false;
-    }
- */
+    } */
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,14 +24,12 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' =>'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:3|string',
-            'state_id' => 'required|exists:states,id'
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:3|max:255'
         ];
     }
 
-    protected function failedValidation(Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'error' => array_values($validator->errors()->getMessages())[0][0]
